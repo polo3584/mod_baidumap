@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="3.1"
+	client="site"
+	method="upgrade">
+	<name>百度地图模块</name>
+	<author>彭杨弢</author>
+	<creationDate>2017-04-04</creationDate>
+	<copyright>Copyright (C) 2017 彭杨弢. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>331374216@qq.com</authorEmail>
+	<version>1.0.0</version>
+	<description>
+	南开大学 百度地图模块
+	 <![CDATA[
+	 <p><a href="http://api.map.baidu.com/lbsapi/getpoint/index.html" target="new" class="btn btn-success" title="百度坐标拾取系统">如何获取标记点的坐标？</a> <a href="http://lbsyun.baidu.com/jsdemo.htm#a1_2" target="new" class="btn btn-info" title="地图模块使用说明">api事例</a></p>
+	 <p>更多百度地图api功能：<a href="http://lbsyun.baidu.com" target="new">百度开放平台</a></p>
+	  ]]>
+	</description>
+
+	<files>
+		<filename module="mod_baidumap">mod_baidumap.php</filename>
+		<filename>index.html</filename>
+		<folder>tmpl</folder>
+		<folder>assets</folder>
+	</files>	
+	<languages>
+		<language tag="zh-CN">zh-CN.mod_baidumap.ini</language>		
+	</languages>
+	
+	<config>
+		<fields name="params">			
+			<fieldset name="POINT">
+				<field
+					name="point_c"
+					type="text"
+					default="116.403874,39.914889"
+					label="中心点坐标"
+					description="定义一个地图中心点坐标，经度与纬度用 , 分开。" />				
+				<field
+					name="level"
+					type="list"
+					default="16"
+					label="地图级别"
+					description="定义地图初始缩放级别，数值范围：1-18">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+				
+				</field>	
+					
+			</fieldset>
+			<fieldset name="SETTING">
+				<field type="spacer" name="spacer1" label="----------------------------------------地图尺寸----------------------------------------" />
+					<field
+					name="width"
+					type="text"
+					default="100%"
+					label="宽度"
+					description="定义地图宽度，默认值为100%全宽，也可以输入具体的宽度，单位为:px，比如：960px" />
+					<field
+					name="height"
+					type="text"
+					default="300px"
+					label="高度"
+					description="定义地图宽度，单位为:px，比如：300px" />
+				<field type="spacer" name="spacer2" label="----------------------------------------地图缩放----------------------------------------" />
+				<field
+					name="map_zoom"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="地图缩放"
+					description="是否开启地图缩放"
+					default="1">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="zoom_style"
+					type="list"
+					default="LARGE"
+					label="样式"
+					description="选择地图缩放控件的样式">
+					<option value="LARGE">标准</option>
+					<option value="SMALL">精简</option>
+					<option value="PAN">平移</option>
+					<option value="ZOOM">缩放</option>					
+				</field>
+				<field
+					name="zoom_position"
+					type="list"
+					default="TOP_LEFT"
+					label="位置"
+					description="选择地图缩放控件的位置">
+					<option value="TOP_LEFT">左上</option>
+					<option value="TOP_RIGHT">右上</option>
+					<option value="BOTTOM_LEFT">左下</option>
+					<option value="BOTTOM_RIGHT">右下</option>					
+				</field>								
+				<field type="spacer" name="spacer3" label="----------------------------------------地图缩略图----------------------------------------" />
+				<field
+					name="thumb"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="地图缩略图"
+					description="是否开启地图缩略图"
+					default="1">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="thumb_status"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="状态"
+					description=""
+					default="1">
+					<option value="1">展开</option>
+					<option value="0">收起</option>
+				</field>
+				<field
+					name="thumb_position"
+					type="list"
+					default="BOTTOM_RIGHT"
+					label="位置"
+					description="选择地图缩略图的位置">
+					<option value="TOP_LEFT">左上</option>
+					<option value="TOP_RIGHT">右上</option>
+					<option value="BOTTOM_LEFT">左下</option>
+					<option value="BOTTOM_RIGHT">右下</option>					
+				</field>	
+				<field type="spacer" name="spacer4" label="----------------------------------------地图比例尺----------------------------------------" />
+				<field
+					name="scale"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="地图比例尺"
+					description="是否开启地图比例尺"
+					default="1">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="scale_unit"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="单位"
+					description="设置地图比例尺单位"
+					default="0">
+					<option value="0">公制</option>
+					<option value="1">英制</option>
+				</field>				
+				<field
+					name="scale_position"
+					type="list"
+					default="BOTTOM_LEFT"
+					label="位置"
+					description="选择地图比例尺的位置">
+					<option value="TOP_LEFT">左上</option>
+					<option value="TOP_RIGHT">右上</option>
+					<option value="BOTTOM_LEFT">左下</option>
+					<option value="BOTTOM_RIGHT">右下</option>					
+				</field>				
+				
+				<field type="spacer" name="spacer5" label="----------------------------------------地图状态----------------------------------------" />
+				<field
+					name="mouse"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="鼠标滚轮缩放"
+					description=""
+					default="1">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="keyboard"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="键盘方向移动"
+					description=""
+					default="1">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="drag"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="鼠标拖动地图"
+					description=""
+					default="1">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="double"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="鼠标双击放大"
+					description=""
+					default="1">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+			</fieldset>
+			
+			<fieldset name="MARKER">
+				<field
+					name="marker_icon"
+					type="list"
+					default="21"
+					label="图标"
+					description="选择地图上的标记图标">
+					<option value="11">1-1</option>
+					<option value="12">1-2</option>
+					<option value="13">1-3</option>
+					<option value="14">1-4</option>				
+					<option value="15">1-5</option>				
+					<option value="16">1-6</option>				
+					<option value="21">2-1</option>			
+					<option value="22">2-2</option>			
+					<option value="23">2-3</option>			
+					<option value="24">2-4</option>		
+					<option value="25">2-5</option>		
+					<option value="26">2-6</option>		
+					<option value="31">3-1</option>		
+					<option value="32">3-2</option>		
+					<option value="33">3-3</option>		
+					<option value="34">3-4</option>		
+					<option value="35">3-5</option>		
+					<option value="36">3-6</option>
+				</field>
+					<field
+					name="double"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="显示信息"
+					description="设置是否展开标记点的信息"
+					default="1">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+					<field
+					name="point_marker"
+					type="textarea" rows="10"
+					default=""
+					label="标记点坐标"
+					description="不要使用回车键！经度与纬度之间用 , 分开，多个坐标请使用@分隔，比如：116.403874,39.914889@103.456875,38.123456" />				
+					<field
+					name="marker_title"
+					type="textarea" rows="10"
+					label="名称"
+					description="不要使用回车键！当需要标注多个地点时，名称之间请使用@分隔，例如：我的标记@我的另一个标记。注意！百度地图里面只允许同时展开一个标记点的信息，因此，如果你有多个标记点，请确保你想默认展开信息的标记点在最前面。" />					
+					<field
+					name="marker_content"
+					type="textarea" rows="10" filter="raw"
+					label="备注"
+					description="不要用回车键换行。当需要标注多个地点时，备注之间请使用@分隔，例如：A标记点的信息啊@我的另一个标记B啊。注意，这里的备注的顺序请确保与上一个【名称】参数的填写顺序是一致的。" />
+			
+			</fieldset>
+			
+			<fieldset name="PLAN">
+			<field
+					name="start"
+					type="text"
+					default="天坛公园"
+					label="起点"
+					description="定义一个起点" />				
+				<field
+					name="stop"
+					type="text"
+					default="故宫"
+					label="终点"
+					description="定义一个终点" />	
+			    <field
+					name="plan"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="是否开启路线规划"
+					description=""
+					default="0">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="road"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="是否开启驾车路程与时间"
+					description=""
+					default="0">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="bus"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="是否开启公交路程与时间"
+					description=""
+					default="0">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="taxi"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="是否开启打车费用"
+					description=""
+					default="0">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="satellite"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="是否开启卫星图和三维地图"
+					description=""
+					default="0">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="panorama"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="是否开启全景控件"
+					description=""
+					default="0">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				
+				<field
+					name="location"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="是否开启鼠标定位"
+					description=""
+					default="0">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				
+			</fieldset>
+			
+			<fieldset
+				name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field
+					name="moduleclass_sfx"
+					type="textarea" rows="3"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+						value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static">
+					<option
+						value="static"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

@@ -1,0 +1,20 @@
+/**
+ * ------------------------------------------------------------------------
+ * 百度地图模块 for J3.3
+ * ------------------------------------------------------------------------
+ * Copyright (C) 2017 彭杨弢. All Rights Reserved.
+ * @license - GNU/GPL, http://www.gnu.org/licenses/gpl.html
+ * Author: 彭杨弢
+ * Websites: http://lbsyun.baidu.com/index.php?title=jspopular
+ +
+ 
+ * ------------------------------------------------------------------------
+ */
+.clearfix {clear:both;}
+html,body{margin:0;padding:0;}
+.baidumap {border: solid 1px #DDD;}
+.iw_poi_title {font-family: Microsoft Yahei;color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap;}
+.iw_poi_content {font:12px Microsoft Yahei,arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word;padding: 5px 0;}
+.baidumap img { max-width: none !important;}
+.baidumap * {  -webkit-box-sizing: content-box;  -moz-box-sizing: content-box;  box-sizing: content-box;}
+.baidumap *:before,#cxmap *:after {  -webkit-box-sizing: content-box;  -moz-box-sizing: content-box;  box-sizing: content-box;}
